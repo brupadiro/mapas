@@ -7,13 +7,9 @@
             </v-col>
             <v-col class="col-12 col-md-5">
                 <v-fade-transition>
-                    <v-card dark elevation="6" class="rounded-xl" v-show="locSelected.name">
+                    <v-card v-ripple dark elevation="6" class="rounded-xl" v-show="locSelected.name">
                     <v-card-title class="d-flex justify-center font-weight-bold">
                         {{ locSelected.name }}
-                        <v-spacer></v-spacer>
-                        <v-btn icon @click="locSelected = {}">
-                            <v-icon>mdi-close</v-icon>
-                        </v-btn>
                     </v-card-title>
                     <v-img :src="locSelected.img" cover height="300" width="100%">
                     </v-img>
@@ -106,7 +102,7 @@
                     zoomControl: false
 
                 },
-                mapZoom:6,
+                mapZoom:5.7,
 
                 url: 'https://tile.jawg.io/1c5dd981-0cb2-41e3-a0fa-f7d6e1e4a826/{z}/{x}/{y}{r}.png?access-token=8ArpEoBiGS2zZwlKLqdLxbmdF8KnbQQdctZ4DoDLDk5fAU8hr3ava9MJaJ74PLTG&f=12'
             }
@@ -126,7 +122,7 @@
             }
             },
             centrarEnEspana() {
-                this.$refs.map.mapObject.setView([39.7, -7.5]);
+                this.$refs.map.mapObject.setView([39.7, -8.5]);
             },
 
         },
