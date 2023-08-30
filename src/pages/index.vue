@@ -38,7 +38,7 @@
                             </l-icon>
                         </l-marker>
                     </div>
-                    <l-map ref="canarymap" class="canarymap" draggable="false" :options="optionsCanaryMap" :center="latLng(28,-15.5)" :zoom="7" style="height:200px;width:100%">
+                    <l-map ref="canarymap" class="canarymap" draggable="false" :options="optionsCanaryMap" :center="latLng(28.5,-15.5)" :zoom="7" style="height:200px;width:100%">
                     <l-geo-json :geojson="spainJson" :optionsStyle="styleJson"></l-geo-json>
      <l-geo-json :geojson="africaJson" :optionsStyle="styleCanaryJson"></l-geo-json>
     <l-tile-layer :url="url" />
