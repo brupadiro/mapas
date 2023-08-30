@@ -43,7 +43,7 @@
      <l-geo-json :geojson="africaJson" :optionsStyle="styleCanaryJson"></l-geo-json>
     <l-tile-layer :url="url" />
                 </l-map>
-
+ 
                     
                 </l-map>
 
