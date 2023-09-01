@@ -1,5 +1,5 @@
 <template>
-        <svg  style="width:70px; height:70px">
+        <g  :style="`width:70px; height:70px; color:red; transform:translate(${loc.latitude}px,${loc.longitude}px)`">
             <circle cx="50%" cy="50%" r="8" fill-opacity="0" stroke="#258dc8" stroke-width="1px" stroke-opacity="0.5">
                 <animate attributeName="r" from="0" to="10" dur="4s" repeatCount="indefinite" />
     <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite"></animate>
@@ -8,9 +8,17 @@
 
 
         <circle cx="50%" cy="50%" r="5" fill="#258dc8" stroke="#258dc8"></circle>
-    </svg>
+</g>
 </template>
 
 <script>
-    export default {}
+    export default {
+        props:{
+            loc:{
+                type:Object,
+                default:()=>{}
+            }
+        }
+
+    }
 </script>

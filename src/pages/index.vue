@@ -2,47 +2,34 @@
     <v-container>
         <v-row>
             <v-col class="col-12 mb-12">
-                <h1 class="text-center text-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan miles de rodajes en nuestro país.</h1>
-                <h4 class="text-center">Gracias a su labor te presentamos los mejores destinos de pantalla a los que viajar</h4>
+                <h1 class="text-center text-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan miles
+                    de rodajes en nuestro país.</h1>
+                <h4 class="text-center">Gracias a su labor te presentamos los mejores destinos de pantalla a los que
+                    viajar</h4>
             </v-col>
             <v-col class="col-12 col-md-4">
                 <v-fade-transition>
                     <v-card v-ripple dark elevation="6" class="rounded-xl" v-show="locSelected.name">
-                    <v-card-title class="d-flex justify-center font-weight-bold">
-                        {{ locSelected.name }}
-                    </v-card-title>
-                    <v-img :src="locSelected.img" cover height="300" width="100%">
-                    </v-img>
-                    <v-card-text class="white--text px-12">
-                        {{ locSelected.description }}
-                    </v-card-text>
-                </v-card>
+                        <v-card-title class="d-flex justify-center font-weight-bold">
+                            {{ locSelected.name }}
+                        </v-card-title>
+                        <v-img :src="locSelected.img" cover height="300" width="100%">
+                        </v-img>
+                        <v-card-text class="white--text px-12">
+                            {{ locSelected.description }}
+                        </v-card-text>
+                    </v-card>
 
                 </v-fade-transition>
             </v-col>
-            <v-col class="col-12 col-md-8">
-                <l-map ref="map" draggable="false" :center="latLng(28,-15.5)" :zoom="mapZoom" :options="options" style="height:650px">
-                    <l-geo-json :geojson="spainJson" :optionsStyle="styleJson"></l-geo-json>
-                    <l-tile-layer :url="url" />
-                    <div v-for="loc in baseLocs" :key="loc.name">
-                        <l-marker 
-                        @mouseover="locSelected = loc" 
-                        :zIndexOffset="10000" :lat-lng="latLng(loc.lat, loc.lng)">
-                            <l-icon :icon-size="[70, 70]">
-                                <pointComponent v-show="locSelected.name != loc.name"></pointComponent>
-                                <waveComponent v-show="locSelected.name == loc.name"></waveComponent>
-                            </l-icon>
-                        </l-marker>
-                    </div>
-                    <l-map ref="canarymap" class="canarymap" draggable="false" :options="optionsCanaryMap" :center="latLng(28.5,-15.5)" :zoom="7" style="height:200px;width:100%">
-                    <l-geo-json :geojson="spainJson" :optionsStyle="styleJson"></l-geo-json>
-     <l-geo-json :geojson="africaJson" :optionsStyle="styleCanaryJson"></l-geo-json>
-    <l-tile-layer :url="url" />
-                </l-map>
- 
-                    
-                </l-map>
-
+            <v-col class="col-md-2"></v-col>
+            <v-col class="col-12 col-md-6 d-flex justify-end">
+                <svgMapComponent>
+                    <template v-for="(loc,index) in baseLocs">
+                        <pointComponent @mouseover.native="locSelected = loc" v-if="locSelected.name !=loc.name" :loc="loc" :key="index"></pointComponent>
+                        <waveComponent v-else :loc="loc" :key="index"></waveComponent>
+                    </template>
+                </svgMapComponent>
             </v-col>
         </v-row>
 
@@ -50,6 +37,7 @@
 </template>
 <script>
     import waveComponent from '@/components/waveComponent.vue'
+    import svgMapComponent from '@/components/svgMapComponent.vue'
     import pointComponent from '@/components/pointComponent.vue'
     import {
         latLng
@@ -61,32 +49,37 @@
     import franceJson from '@/assets/france.json'
     import africaJson from '@/assets/africa.json'
     import portugalJson from '@/assets/portugal.json'
+    import InlineSvg from 'vue-inline-svg';
+    import * as d3 from 'd3';
+
     export default {
         components: {
+            InlineSvg,
             waveComponent: waveComponent,
-            pointComponent: pointComponent
+            pointComponent: pointComponent,
+            svgMapComponent: svgMapComponent
         },
         name: 'IndexPage',
         data() {
             return {
-                spainJson:spainJson,
-                franceJson:franceJson,
-                africaJson:africaJson,
-                portugalJson:portugalJson,
-                locSelected:{},
+                spainJson: spainJson,
+                franceJson: franceJson,
+                africaJson: africaJson,
+                portugalJson: portugalJson,
+                locSelected: {},
                 baseLocs: baseLocs,
                 latLng: latLng,
                 myPosition: {
                     lat: -30,
                     lng: -3.5,
                 },
-                styleJson:{
+                styleJson: {
                     color: "#258dc8",
                     weight: 0,
                     opacity: 1,
                     fillOpacity: 0.4
                 },
-                styleCanaryJson:{
+                styleCanaryJson: {
                     color: "white",
                     weight: 1,
                     opacity: 1,
@@ -94,7 +87,7 @@
                 },
 
 
-                optionsCanaryMap:{
+                optionsCanaryMap: {
                     zoomSnap: 0.25,
                     minZoom: 7,
                     maxZoom: 7,
@@ -102,7 +95,7 @@
                     zoomControl: false
 
                 },
-                mapZoom:5.4,
+                mapZoom: 5.4,
 
                 url: 'https://tile.jawg.io/1c5dd981-0cb2-41e3-a0fa-f7d6e1e4a826/{z}/{x}/{y}{r}.png?access-token=8ArpEoBiGS2zZwlKLqdLxbmdF8KnbQQdctZ4DoDLDk5fAU8hr3ava9MJaJ74PLTG&f=12'
             }
@@ -118,51 +111,31 @@
         methods: {
             checkMap() {
                 if (this.$refs.map) {
-                 this.centrarEnEspana();
-            }
+                    this.centrarEnEspana();
+                }
             },
             centrarEnEspana() {
                 this.$refs.map.mapObject.setView([39.7, -7.5]);
             },
 
         },
-        computed:{
-            options() {
-                var optionsMap = {
-                    zoomSnap: 0.25,
-                    zoomControl: false,
-                    scrollWheelZoom: false,
-                    dragging:false,
-                    zoom:10
-          
-                }
-                if (this.$vuetify.breakpoint.xs) {
-                    optionsMap.dragging = true
-                    optionsMap.scrollWheelZoom = true
-                    this.mapZoom=5
-
-
-                } else if (this.$vuetify.breakpoint.sm) {
-                } 
-                return optionsMap
-            }
-        }
     }
 </script>
 
 <style lang="scss">
-.canarymap{
-    height: 200px;
-    position: absolute;
-    z-index: 10000;
-    bottom: 0px;
-    width: 50%!important;
-    border: 1px solid black;
+    .canarymap {
+        height: 200px;
+        position: absolute;
+        z-index: 10000;
+        bottom: 0px;
+        width: 50% !important;
+        border: 1px solid black;
 
-}
-@media(max-width:768px){
-    .canarymap{
-        width: 100%!important;
     }
-}
+
+    @media(max-width:768px) {
+        .canarymap {
+            width: 100% !important;
+        }
+    }
 </style>

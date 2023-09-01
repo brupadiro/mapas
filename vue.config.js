@@ -7,6 +7,18 @@ module.exports = defineConfig({
   ],
   filenameHashing: false,
   configureWebpack: {
+    module: {
+      rules: [
+        // ...
+        {
+          test: /\.svg$/,
+          use: [
+            'vue-loader',
+            'vue-svg-loader',
+          ],
+        },
+      ],
+    },
     optimization: {
       splitChunks: false
     }

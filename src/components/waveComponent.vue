@@ -1,26 +1,34 @@
 <template>
-        <svg id="radar-circle" style="width:70px; height:70px">
-  <circle cx="50%" cy="50%" r="0" fill-opacity="0" stroke="orange" stroke-width="1.5px" stroke-opacity="1">
-    <animate attributeName="r" from="0" to="40" dur="4s" repeatCount="indefinite" />
-    <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite"></animate>
-  </circle>
-  
-  <circle cx="50%" cy="50%" r="0" fill-opacity="0" stroke="orange" stroke-width="1.5px" stroke-opacity="1">
-    <animate attributeName="r" from="0" to="40" dur="4s" repeatCount="indefinite" begin="1s" />
-    <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite" begin="0.75s"></animate>
-  </circle>
-  
-  <circle cx="50%" cy="50%" r="0" fill-opacity="0" stroke="orange" stroke-width="1.5px" stroke-opacity="1">
-    <animate attributeName="r" from="0" to="40" dur="4s" repeatCount="indefinite" begin="2s" />
-    <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite" begin="1.5s"></animate>
-  </circle>
+  <g :style="`width:70px; height:70px; transform:translate(${loc.latitude}px,${loc.longitude}px)`">
+    <circle cx="50%" cy="50%" r="0" fill-opacity="0" stroke="orange" stroke-width="1.5px" stroke-opacity="1">
+      <animate attributeName="r" from="0" to="40" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite">
+      </animate>
+    </circle>
 
-  <circle cx="50%" cy="50%" r="5" fill="#f2a97f" stroke="orange"></circle>
-</svg> 
+    <circle cx="50%" cy="50%" r="0" fill-opacity="0" stroke="orange" stroke-width="1.5px" stroke-opacity="1">
+      <animate attributeName="r" from="0" to="40" dur="4s" repeatCount="indefinite" begin="1s" />
+      <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite" begin="0.75s">
+      </animate>
+    </circle>
+
+    <circle cx="50%" cy="50%" r="0" fill-opacity="0" stroke="orange" stroke-width="1.5px" stroke-opacity="1">
+      <animate attributeName="r" from="0" to="40" dur="4s" repeatCount="indefinite" begin="2s" />
+      <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite" begin="1.5s">
+      </animate>
+    </circle>
+
+    <circle cx="50%" cy="50%" r="5" fill="#f2a97f" stroke="orange"></circle>
+  </g>
 </template>
 
 <script>
-    export default {
-    }
+  export default {
+    props:{
+            loc:{
+                type:Object,
+                default:()=>{}
+            }
+        }
+  }
 </script>
-
