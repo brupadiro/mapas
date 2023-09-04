@@ -141,16 +141,16 @@
         }
     }
     .info-card{
-        max-width:50%
+        max-width:50%!important;
     }
     @media(max-width:1200px) {
         .info-card {
-            max-width:70%;
+            max-width:70%!important;;
         }
     }
     @media(max-width:900px) {
         .info-card {
-            max-width:100%;
+            max-width:100%!important;;
         }
     }
     @media (min-width: 1600px) {
