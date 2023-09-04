@@ -1,29 +1,30 @@
 <template>
-    <v-container>
-        <v-row>
+    <v-container fluid>
+        <v-row no-gutters>
             <v-col class="col-12 mb-12">
-                <h1 class="text-center text-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan miles
+                <h1 class="text-center text-lg-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan miles
                     de rodajes en nuestro país.</h1>
                 <h4 class="text-center">Gracias a su labor te presentamos los mejores destinos de pantalla a los que
                     viajar</h4>
             </v-col>
-            <v-col class="col-12 col-md-4">
+            <v-col class="col-12 col-md-5 col-lg-6 d-flex justify-center">
                 <v-fade-transition>
-                    <v-card v-ripple dark elevation="6" class="rounded-xl" v-show="locSelected.name">
-                        <v-card-title class="d-flex justify-center font-weight-bold">
+                    <v-card  v-ripple dark elevation="6" class="rounded-xl info-card" v-show="locSelected.name">
+                        <a href="#">
+                            <v-card-title class="d-flex justify-center font-weight-bold">
                             {{ locSelected.name }}
                         </v-card-title>
-                        <v-img :src="locSelected.img" cover height="300" width="100%">
+                    </a>
+                        <v-img :src="locSelected.img" cover height="250" class="image-location" width="100%">
                         </v-img>
-                        <v-card-text class="white--text px-12">
+                        <v-card-text class="white--text px-lg-12 font-weight-bold">
                             {{ locSelected.description }}
                         </v-card-text>
                     </v-card>
 
                 </v-fade-transition>
             </v-col>
-            <v-col class="col-md-2"></v-col>
-            <v-col class="col-12 col-md-6 d-flex justify-end">
+            <v-col class="col-12 col-md-6 col-lg-6 pr-lg-16">
                 <svgMapComponent>
                     <template v-for="(loc,index) in baseLocs">
                         <pointComponent @mouseover.native="locSelected = loc" v-if="locSelected.name !=loc.name" :loc="loc" :key="index"></pointComponent>
@@ -31,7 +32,8 @@
                     </template>
                 </svgMapComponent>
             </v-col>
-        </v-row>
+            <v-col class="col-md-1"></v-col>
+       </v-row>
 
     </v-container>
 </template>
@@ -138,4 +140,23 @@
             width: 100% !important;
         }
     }
+    .info-card{
+        max-width:50%
+    }
+    @media(max-width:1200px) {
+        .info-card {
+            max-width:70%;
+        }
+    }
+    @media(max-width:900px) {
+        .info-card {
+            max-width:100%;
+        }
+    }
+    @media (min-width: 1600px) {
+        .image-location {
+            height:350px!important;
+        }
+    }
+        
 </style>

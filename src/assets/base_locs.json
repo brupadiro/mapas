@@ -3,8 +3,8 @@
     "name": "Castillo de Monteflor",
     "lat": 41.4036,
     "lng": 2.1744,
-    "latitude":142,
-    "longitude":-131,
+    "latitude":202,
+    "longitude":-86,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla justo vel velit lacinia, non scelerisque dui aliquam.",
     "img":"https://images.pexels.com/photos/18048917/pexels-photo-18048917/free-photo-of-escaleras-edificio-pared-puerta.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
@@ -12,8 +12,8 @@
     "name": "Playa del Horizonte",
     "lat": 36.7222,
     "lng": -4.4209,
-    "latitude":-62,
-    "longitude": 52,
+    "latitude":-4,
+    "longitude": 101,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel sapien in ligula posuere sagittis. Sed ac faucibus urna.",
     "img":"https://images.pexels.com/photos/18029718/pexels-photo-18029718/free-photo-of-mar-playa-gente-arena.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
@@ -21,8 +21,8 @@
     "name": "Pueblo Encantado de Valverde",
     "lat": 39.4750,
     "lng": -0.3752,
-    "latitude":63,
-    "longitude":-54,
+    "latitude":131,
+    "longitude":-15,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec odio. Praesent libero. Sed cursus ante dapibus diam.",
     "img":"https://images.pexels.com/photos/2187604/pexels-photo-2187604.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
@@ -30,8 +30,8 @@
     "name": "Bosque de Alameda",
     "lat": 43.2630,
     "lng": -2.9349,
-    "longitude":18,
-    "latitude": -212,
+    "longitude":-2,
+    "latitude": 18,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed.",
     "img":"https://images.pexels.com/photos/18048917/pexels-photo-18048917/free-photo-of-escaleras-edificio-pared-puerta.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
@@ -39,8 +39,8 @@
     "name": "Callejón Antiguo de Cáceres",
     "lat": 39.4756,
     "lng": -6.3723,
-    "latitude":-129, 
-    "longitude":-58,
+    "latitude":-145, 
+    "longitude":-14,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
     "img":"https://static.vecteezy.com/system/resources/previews/003/561/037/non_2x/old-alley-in-perspective-photo.jpg"
   },
@@ -48,8 +48,8 @@
     "name": "Monasterio de San Isidro",
     "lat": 42.8782,
     "lng": -8.5448,
-    "latitude":-192, 
-    "longitude":-195,
+    "latitude":-123, 
+    "longitude":-146,
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas aliquet accumsan leo. Nullam faucibus mi quis velit.",
     "img":"https://www.turismocastillayleon.com/es/arte-cultura-patrimonio/monasterios/monasterio-santa-maria-carracedo.ficheros/38336-35900_SD_0.jpg?clipX=0&clipY=27&clipWidth=1440&clipHeight=520"
   }

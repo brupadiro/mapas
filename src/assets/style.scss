@@ -7,12 +7,16 @@ $main-font:  'Spectral', sans-serif;
 body {
 
     .v-application {
-      background:#cecece;
+      background:#cbc8c9!important;
         font-family: $main-font!important;
       input{
         font-family: $main-font!important;
       } 
-   
+      a {
+        color: inherit!important;
+        border: inherit!important;
+        text-decoration: inherit!important;
+    }
       h1,
       h2,
       h3,
@@ -22,6 +26,7 @@ body {
       span,
       p,
       h6 .text-h1,
+      .text-lg-h3,
       .text-h2,
       .text-h3,
       .text-h4,
