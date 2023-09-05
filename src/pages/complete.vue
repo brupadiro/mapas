@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <v-row>
+        <v-row no-gutters>
 
             <v-col class="col-12">
                 <v-card elevation="6" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="!isPc">
