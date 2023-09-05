@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify'
 import router from './plugins/routes'
 import './assets/style.scss';
 Vue.config.productionTip = false
-import { LMap, LTileLayer, LMarker,LIcon,LGeoJson } from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker,LIcon,LGeoJson,LPopup } from 'vue2-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 Vue.component('l-map', LMap);
@@ -13,6 +13,7 @@ Vue.component('l-marker', LMarker);
 Vue.component('l-icon', LIcon);
 Vue.component('l-icon', LIcon);
 Vue.component('l-geo-json', LGeoJson);
+Vue.component('l-popup', LPopup);
 
 new Vue({
   vuetify,

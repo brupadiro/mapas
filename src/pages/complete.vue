@@ -1,115 +1,149 @@
 <template>
     <v-container fluid>
         <v-row>
-            <v-col class="col-md-4 col-12">
-                <v-card dark elevation="6" min-height="90vh" class="rounded-xl">
-                    <v-slide-x-transition>
 
-                        <div v-show="!selected.Titulo_original">
-
-                            <v-card-title class="font-weight-bold">
-                                Buscar pelicula/serie
-                            </v-card-title>
-                            <v-divider></v-divider>
+            <v-col class="col-12">
+                <v-card elevation="6" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="!isPc">
                             <v-card-text>
                                 <v-row>
                                     <v-col class="col-12">
-                                        <selectComponent v-model="search.Formato" label="Formato"
-                                            :items="['Película','Serie']"></selectComponent>
+                                        <selectComponent rounded v-model="search.Formato" label="Formato"
+                                            :items="['Película','Serie',{value:'',text:'Peliculas y Series'}]">
+                                        </selectComponent>
                                     </v-col>
 
                                     <v-col class="col-12">
-                                        <selectComponent v-model="search.Ano" label="Anio" :items="listOFYears">
+                                        <selectComponent v-model="search.Titulo_original" label="Anio"
+                                            :items="listOfTitles">
                                         </selectComponent>
                                     </v-col>
                                     <v-col class="col-12">
-                                        <selectComponent v-model="search.Director" label="Director"
+                                        <selectComponent rounded v-model="search.Director" label="Director"
                                             :items="listOFDirectors"></selectComponent>
                                     </v-col>
                                     <v-col class="col-12">
-                                        <selectComponent v-model="search.Productora" label="Productora"
-                                            :items="listOFProducers"></selectComponent>
+                                        <selectComponent rounded v-model="search.Director" label="Director"
+                                            :items="listOFDirectors"></selectComponent>
                                     </v-col>
                                     <v-col class="col-12">
-                                        <selectComponent v-model="search.Provincia" label="Provincia"
+                                        <v-input class="range-slider" hide-details>
+                                            <template v-slot:prepend>
+                                                <span class="mt-1">1933</span>
+                                            </template>
+                                            <template v-slot:append>
+                                                <span class="mt-1">2023</span>
+                                                </template>
+                                            <v-slider min="1933"  max="2023" hide-details v-model="search.Ano" thumb-color="#00bcd4"></v-slider>
+                                        </v-input>
+                                    </v-col>
+
+                                    <v-col class="col-12 text-center">
+                                        <h2 class="mb-0">Distribucion especial de los rodajes</h2>
+                                    </v-col>
+                                    <v-col class="col-12">
+                                        <selectComponent rounded v-model="search.Comunidad_autonoma"
+                                            label="Comunidad autonoma" :items="listOFComunitys"></selectComponent>
+                                    </v-col>
+                                    <v-col class="col-6">
+                                        <selectComponent rounded v-model="search.Provincia" label="Provincia"
                                             :items="listOFProvinces"></selectComponent>
                                     </v-col>
-                                    <v-col class="col-12">
-                                        <selectComponent v-model="search.Municipio" label="Municipio"
+                                    <v-col class="col-6">
+                                        <selectComponent rounded v-model="search.Municipio" label="Municipio"
                                             :items="listOFMuniciples"></selectComponent>
                                     </v-col>
-                                    <v-col class="col-12">
-                                        <selectComponent v-model="search.Comunidad_autonoma" label="Comunidad autonoma"
-                                            :items="listOFComunitys"></selectComponent>
-                                    </v-col>
                                 </v-row>
                             </v-card-text>
-                        </div>
-                    </v-slide-x-transition>
-                    <v-slide-x-reverse-transition>
-                        <div v-show="selected.Titulo_original">
-                            <v-card-title class="d-flex justify-center font-weight-bold">
-                                {{ selected.Titulo_original }}
-                                <v-spacer></v-spacer>
-                                <v-btn @click="selected = {}">
-                                    <v-icon>mdi-close</v-icon>
-                                </v-btn>
-                            </v-card-title>
-                            <v-img src="https://geocine.uc3m.es/faces/fotogramas/Isabel-tt2011533-T01-C08-15.jpg" cover
-                                height="300" width="100%">
-                            </v-img>
-                            <v-card-text>
-                                <v-row>
-                                    <v-col class="col-4">
-                                        <b>Director</b>
-                                    </v-col>
-                                    <v-col class="col-8">{{ selected.Director }}</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="col-4">
-                                        <b>Productora</b>
-                                    </v-col>
-                                    <v-col class="col-8">{{ selected.Productora }}</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="col-4">
-                                        <b>Municipio</b>
-                                    </v-col>
-                                    <v-col class="col-8">{{ selected.Municipio }}</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="col-4">
-                                        <b>Provincia</b>
-                                    </v-col>
-                                    <v-col class="col-8">{{ selected.Provincia }}</v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col class="col-4">
-                                        <b>Comunidad autonoma</b>
-                                    </v-col>
-                                    <v-col class="col-8">{{ selected.Comunidad_autonoma }}</v-col>
-                                </v-row>
-                            </v-card-text>
-                        </div>
-                    </v-slide-x-reverse-transition>
-                </v-card>
+                    </v-card>
+
 
             </v-col>
-            <v-col class="col-md-8">
-                <v-card dark elevation="6" height="90vh" class="rounded-xl">
-                    <l-map ref="map" draggable="false" :center="latLng([40, -3.5], 6)" :zoom="6" style="height:100%">
-                        <l-tile-layer :url="url" />
-                        <v-marker-cluster>
-                            <l-marker v-for="(loc,index) in locationFilter" @click="selected = loc"
-                                :key="loc.ID_película+index" :zIndexOffset="10000"
-                                :lat-lng="latLng(loc.Coordenada_latitud, loc.Coordenada_longitud)">
-                                <l-icon :icon-size="[70, 70]">
-                                    <pointComponent></pointComponent>
-                                </l-icon>
-                            </l-marker>
-                        </v-marker-cluster>
-                    </l-map>
-                </v-card>
+
+
+            <v-col class="col-md-12">
+                <l-map ref="map" draggable="false" :center="latLng([40, -3.5], 6)" :zoom="6" style="height:100vh"
+                    class="d-flex align-center">
+                    <l-tile-layer :url="url" />
+                    <v-marker-cluster>
+                        <l-marker v-for="(loc,index) in locationFilter" @click="selected = loc"
+                            :key="loc.ID_película+index" :zIndexOffset="10000"
+                            :lat-lng="latLng(loc.Coordenada_latitud, loc.Coordenada_longitud)">
+                            <l-icon :icon-size="[15, 15]">
+                                <svg width="15" height="15">
+                                    <g
+                                    :style="`width:70px; height:70px; color:red;`">
+                                    <circle cx="50%" cy="50%" r="8" fill-opacity="0" stroke="#258dc8" stroke-width="1px"
+                                        stroke-opacity="0.5">
+                                        <animate attributeName="r" from="0" to="10" dur="4s" repeatCount="indefinite" />
+                                        <animate attributeName="stroke-opacity" from="1" to="0" dur="3s"
+                                            repeatCount="indefinite"></animate>
+                                    </circle>
+
+                                    <circle cx="50%" cy="50%" r="7" fill="#258dc8" stroke="#258dc8"></circle>
+                                </g>
+
+                                </svg>
+                            </l-icon>
+                            <l-popup>
+                                <infoProductionComponent :value="selected"></infoProductionComponent>
+                            </l-popup>
+
+                        </l-marker>
+                    </v-marker-cluster>
+
+                    <v-card elevation="6" width="40%" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="isPc">
+                            <v-card-text>
+                                <v-row>
+                                    <v-col class="col-12">
+                                        <selectComponent rounded v-model="search.Formato" label="Formato"
+                                            :items="['Película','Serie',{value:'',text:'Peliculas y Series'}]">
+                                        </selectComponent>
+                                    </v-col>
+
+                                    <v-col class="col-12">
+                                        <selectComponent v-model="search.Titulo_original" label="Anio"
+                                            :items="listOfTitles">
+                                        </selectComponent>
+                                    </v-col>
+                                    <v-col class="col-12">
+                                        <selectComponent rounded v-model="search.Director" label="Director"
+                                            :items="listOFDirectors"></selectComponent>
+                                    </v-col>
+                                    <v-col class="col-12">
+                                        <selectComponent rounded v-model="search.Director" label="Director"
+                                            :items="listOFDirectors"></selectComponent>
+                                    </v-col>
+                                    <v-col class="col-12">
+                                        <v-input class="range-slider" hide-details>
+                                            <template v-slot:prepend>
+                                                <span class="mt-1">1933</span>
+                                            </template>
+                                            <template v-slot:append>
+                                                <span class="mt-1">2023</span>
+                                                </template>
+                                            <v-slider min="1933"  max="2023" hide-details v-model="search.Ano" thumb-color="#00bcd4"></v-slider>
+                                        </v-input>
+                                    </v-col>
+
+                                    <v-col class="col-12 text-center">
+                                        <h2 class="mb-0">Distribucion especial de los rodajes</h2>
+                                    </v-col>
+                                    <v-col class="col-12">
+                                        <selectComponent rounded v-model="search.Comunidad_autonoma"
+                                            label="Comunidad autonoma" :items="listOFComunitys"></selectComponent>
+                                    </v-col>
+                                    <v-col class="col-6">
+                                        <selectComponent rounded v-model="search.Provincia" label="Provincia"
+                                            :items="listOFProvinces"></selectComponent>
+                                    </v-col>
+                                    <v-col class="col-6">
+                                        <selectComponent rounded v-model="search.Municipio" label="Municipio"
+                                            :items="listOFMuniciples"></selectComponent>
+                                    </v-col>
+                                </v-row>
+                            </v-card-text>
+                    </v-card>
+                </l-map>
             </v-col>
         </v-row>
     </v-container>
@@ -120,6 +154,7 @@
     import selectComponent from '@/components/forms/fields/selectComponent.vue'
     import waveComponent from '@/components/waveComponent.vue'
     import pointComponent from '@/components/pointComponent.vue'
+    import infoProductionComponent from '@/components/infoProductionComponent.vue'
     import {
         latLng
     } from 'leaflet';
@@ -136,14 +171,23 @@
             selectComponent: selectComponent,
             waveComponent: waveComponent,
             pointComponent: pointComponent,
-            "v-marker-cluster": Vue2LeafletMarkerCluster
+            "v-marker-cluster": Vue2LeafletMarkerCluster,
+            infoProductionComponent:infoProductionComponent
         },
         name: 'completePage',
         data() {
             return {
                 completeLocs: complete_locs,
                 selected: {},
-                search: {},
+                search: {
+                    Formato: '',
+                    'Titulo_original': '',
+                    'Director': '',
+                    'Comunidad_autonoma': '',
+                    'Provincia': '',
+                    'Municipio': ''
+
+                },
                 latLng: latLng,
                 options: {
                     zoomSnap: 0.25,
@@ -169,6 +213,12 @@
             locationFilter() {
                 return this.completeLocs.filter((item) => {
                     return Object.keys(this.search).every((key) => {
+                        if (this.search[key] == '') {
+                            return true
+                        }
+                        if (key == 'Ano') {
+                            return parseInt(item[key]) >= parseInt(this.search[key])
+                        }
                         return this.search[key] == item[key];
                     });
                 });
@@ -179,23 +229,67 @@
             listOFProducers() {
                 return this.getUniqueValues('Productora')
             },
+            listOfTitles() {
+                return [{
+                    value: '',
+                    text: 'Todos los titulos'
+                }, ...this.getUniqueValues('Titulo_original')]
+            },
             listOFDirectors() {
-                return this.getUniqueValues('Director')
+                return [{
+                    value: '',
+                    text: 'Todos los directores'
+                }, ...this.getUniqueValues('Director')]
             },
             listOFMuniciples() {
-                return this.getUniqueValues('Municipio')
+                return [{
+                    value: '',
+                    text: 'Todas los municipios'
+                }, ...this.getUniqueValues('Municipio')]
             },
             listOFProvinces() {
-                return this.getUniqueValues('Provincia')
+                return [{
+                    value: '',
+                    text: 'Todas las provincias'
+                }, ...this.getUniqueValues('Provincia')]
             },
             listOFComunitys() {
-                return this.getUniqueValues('Comunidad_autonoma')
+                return [{
+                    value: '',
+                    text: 'Todas las comunidades autonomas'
+                }, ...this.getUniqueValues('Comunidad_autonoma')]
             },
+            isPc() {
+                return window.innerWidth > 768
+            },
+            
 
         }
     }
 </script>
 
 <style>
+.range-slider{
+    border: 1px solid #9E9E9E!important;
+    border-radius: 50px !important;;
+    padding: 3px !important;;
+
+}
+.marker-cluster-small div{
+    background:#edc237!important;
+}
+.marker-cluster-small{
+    background:#f2eeac!important;
+}
+.leaflet-popup-content{
+    min-height: 300px;
+    width: 250px;
+    background:#333333!important
+    }
+.leaflet-popup-content-wrapper{
+    background:#333333!important;
+        border-radius: 20px!important;
+
+}
 
 </style>
