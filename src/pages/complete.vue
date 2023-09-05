@@ -193,7 +193,7 @@
                     zoomSnap: 0.25,
 
                 },
-                url: 'https://tile.jawg.io/1c5dd981-0cb2-41e3-a0fa-f7d6e1e4a826/{z}/{x}/{y}{r}.png?access-token=8ArpEoBiGS2zZwlKLqdLxbmdF8KnbQQdctZ4DoDLDk5fAU8hr3ava9MJaJ74PLTG&f=12'
+                url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 
             }
@@ -284,10 +284,8 @@
 .leaflet-popup-content{
     min-height: 300px;
     width: 250px;
-    background:#333333!important
     }
 .leaflet-popup-content-wrapper{
-    background:#333333!important;
         border-radius: 20px!important;
 
 }
