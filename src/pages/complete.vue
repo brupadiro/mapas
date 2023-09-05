@@ -91,7 +91,7 @@
                         </l-marker>
                     </v-marker-cluster>
 
-                    <v-card elevation="6" width="40%" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="isPc">
+                    <v-card elevation="6" width="30%" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="isPc">
                             <v-card-text>
                                 <v-row>
                                     <v-col class="col-12">
