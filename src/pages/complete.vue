@@ -61,7 +61,7 @@
 
 
             <v-col class="col-md-12">
-                <l-map ref="map" draggable="false" :center="latLng([40, -3.5], 6)" :zoom="6" style="height:100vh"
+                <l-map ref="map" draggable="false" :center="latLng([40, -6.5], 6)" :zoom="6" style="height:100vh"
                     class="d-flex align-center">
                     <l-tile-layer :url="url" />
                     <v-marker-cluster>
