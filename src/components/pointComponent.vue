@@ -1,17 +1,20 @@
 <template>
-    <g :style="`width:70px; height:70px; color:red; transform:translate(${loc.latitude}px,${loc.longitude}px)`">
+    <g style="width:70px; height:70px; color:red; " :transform="`translate(${loc.x},${loc.y})`">
         <circle cx="50%" cy="50%" r="8" fill-opacity="0" stroke="#258dc8" stroke-width="1px" stroke-opacity="0.5">
             <animate attributeName="r" from="0" to="10" dur="4s" repeatCount="indefinite" />
             <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite"></animate>
         </circle>
 
-        <circle cx="50%" cy="50%" r="7" fill="#258dc8" stroke="#258dc8"></circle>
+        <circle cx="50%" cy="50%" r="7" fill="#4eaba6" stroke="#4eaba6"></circle>
 
-        <!-- Añade tu texto aquí -->
-        <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;" fill="white">
-            <tspan v-for="(line, index) in formattedText" :key="index" x="51%" :dy="index > 0 ? '1.2em' : 0">
+        <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 11px;" fill="white">
+            {{ loc.name.substr(0,10) }}...
+            <!--
+            <tspan v-for="(line, index) in formattedText" :key="index" x="51%" :dy="index > 0 ? '1em' : 0">
                 {{ line }}
             </tspan>
+
+            -->
         </text>
     </g>
 </template>

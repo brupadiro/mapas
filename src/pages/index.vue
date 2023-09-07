@@ -2,20 +2,21 @@
     <v-container fluid>
         <v-row no-gutters>
             <v-col class="col-12 mb-12">
-                <h1 class="text-center text-lg-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan miles
+                <h1 class="text-center text-lg-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan
+                    miles
                     de rodajes en nuestro país.</h1>
                 <h4 class="text-center">Gracias a su labor te presentamos los mejores destinos de pantalla a los que
                     viajar</h4>
             </v-col>
             <v-col class="col-12 col-md-5 col-lg-6 d-flex justify-center">
                 <v-fade-transition>
-                    <v-card  v-ripple dark elevation="6" class="rounded-xl info-card" v-show="locSelected.name">
-                        <a href="#">
+                    <v-card v-ripple dark elevation="6" class="rounded-xl info-card" v-show="locSelected.name">
+                        <a :href="`https://${locSelected.url}`" target="blank">
                             <v-card-title class="d-flex justify-center font-weight-bold">
-                            {{ locSelected.name }}
-                        </v-card-title>
-                    </a>
-                        <v-img :src="locSelected.img" cover height="250" class="image-location" width="100%">
+                                {{ locSelected.name }}
+                            </v-card-title>
+                        </a>
+                        <v-img :src="`/localidades/${locSelected.name}.jpg`" cover height="250" class="image-location" width="100%">
                         </v-img>
                         <v-card-text class="white--text px-lg-12 font-weight-bold">
                             {{ locSelected.description }}
@@ -29,11 +30,11 @@
                     <template v-for="(loc,index) in baseLocs">
                         <pointComponent @mouseover.native="locSelected = loc" v-if="locSelected.name !=loc.name" :loc="loc" :key="index"></pointComponent>
                         <waveComponent v-else :loc="loc" :key="index"></waveComponent>
-                    </template>
+                    </template>  
                 </svgMapComponent>
             </v-col>
             <v-col class="col-md-1"></v-col>
-       </v-row>
+        </v-row>
 
     </v-container>
 </template>
@@ -103,8 +104,6 @@
             }
         },
         async mounted() {
-            this.checkMap();
-
         },
 
         updated() {
@@ -140,23 +139,28 @@
             width: 100% !important;
         }
     }
-    .info-card{
-        max-width:50%!important;
+
+    .info-card {
+        max-width: 50% !important;
     }
+
     @media(max-width:1200px) {
         .info-card {
-            max-width:70%!important;;
+            max-width: 70% !important;
+            ;
         }
     }
+
     @media(max-width:900px) {
         .info-card {
-            max-width:100%!important;;
+            max-width: 100% !important;
+            ;
         }
     }
+
     @media (min-width: 1600px) {
         .image-location {
-            height:350px!important;
+            height: 350px !important;
         }
     }
-        
 </style>
