@@ -13,9 +13,7 @@
                                     </v-col>
 
                                     <v-col class="col-12">
-                                        <selectComponent v-model="search.Titulo_original" label="Anio"
-                                            :items="listOfTitles">
-                                        </selectComponent>
+                                        <v-autocomplete dense hide-details rounded v-model="search.Titulo_original" label="Título" :items="listOfTitles" outlined></v-autocomplete>
                                     </v-col>
                                     <v-col class="col-12">
                                         <selectComponent rounded v-model="search.Director" label="Director"
@@ -94,26 +92,24 @@
                     <v-card elevation="6" width="30%" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="isPc">
                             <v-card-text>
                                 <v-row>
-                                    <v-col class="col-12">
+                                    <v-col class="col-12 pa-1">
                                         <selectComponent rounded v-model="search.Formato" label="Formato"
                                             :items="['Película','Serie',{value:'',text:'Peliculas y Series'}]">
                                         </selectComponent>
                                     </v-col>
 
-                                    <v-col class="col-12">
-                                        <selectComponent v-model="search.Titulo_original" label="Anio"
-                                            :items="listOfTitles">
-                                        </selectComponent>
+                                    <v-col class="col-12 pa-1">
+                                        <v-autocomplete dense hide-details rounded v-model="search.Titulo_original" label="Título" :items="listOfTitles" outlined></v-autocomplete>
                                     </v-col>
-                                    <v-col class="col-12">
+                                    <v-col class="col-12 pa-1">
                                         <selectComponent rounded v-model="search.Director" label="Director"
                                             :items="listOFDirectors"></selectComponent>
                                     </v-col>
-                                    <v-col class="col-12">
+                                    <v-col class="col-12 pa-1">
                                         <selectComponent rounded v-model="search.Director" label="Director"
                                             :items="listOFDirectors"></selectComponent>
                                     </v-col>
-                                    <v-col class="col-12">
+                                    <v-col class="col-12 pa-1">
                                         <v-input class="range-slider" hide-details>
                                             <template v-slot:prepend>
                                                 <span class="mt-1">1933</span>
@@ -125,18 +121,18 @@
                                         </v-input>
                                     </v-col>
 
-                                    <v-col class="col-12 text-center">
+                                    <v-col class="col-12 text-center pa-1">
                                         <h2 class="mb-0">Distribucion especial de los rodajes</h2>
                                     </v-col>
-                                    <v-col class="col-12">
+                                    <v-col class="col-12 pa-1">
                                         <selectComponent rounded v-model="search.Comunidad_autonoma"
                                             label="Comunidad autonoma" :items="listOFComunitys"></selectComponent>
                                     </v-col>
-                                    <v-col class="col-6">
+                                    <v-col class="col-6 pa-1">
                                         <selectComponent rounded v-model="search.Provincia" label="Provincia"
                                             :items="listOFProvinces"></selectComponent>
                                     </v-col>
-                                    <v-col class="col-6">
+                                    <v-col class="col-6 pa-1">
                                         <selectComponent rounded v-model="search.Municipio" label="Municipio"
                                             :items="listOFMuniciples"></selectComponent>
                                     </v-col>
@@ -230,10 +226,7 @@
                 return this.getUniqueValues('Productora')
             },
             listOfTitles() {
-                return [{
-                    value: '',
-                    text: 'Todos los titulos'
-                }, ...this.getUniqueValues('Titulo_original')]
+                return this.getUniqueValues('Titulo_original')
             },
             listOFDirectors() {
                 return [{
@@ -287,6 +280,8 @@
     }
 .leaflet-popup-content-wrapper{
         border-radius: 20px!important;
+        background:#333333!important;
+        color:white!important;
 
 }
 

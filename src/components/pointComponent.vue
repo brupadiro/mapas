@@ -7,8 +7,8 @@
 
         <circle cx="50%" cy="50%" r="7" fill="#4eaba6" stroke="#4eaba6"></circle>
 
-        <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 11px;" fill="white">
-            {{ loc.name.substr(0,10) }}...
+        <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 10px;" fill="white">
+            {{ loc.name.substr(0,10) |capitalize }}...
             <!--
             <tspan v-for="(line, index) in formattedText" :key="index" x="51%" :dy="index > 0 ? '1em' : 0">
                 {{ line }}
@@ -21,6 +21,13 @@
 
 <script>
     export default {
+        filters:{
+            capitalize(value){
+                    if(!value) return ''
+                    value = value.toLowerCase().toString()
+                    return value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+            }
+        },
         props: {
             
             loc: {

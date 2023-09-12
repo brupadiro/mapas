@@ -8,21 +8,22 @@
                 <h4 class="text-center">Gracias a su labor te presentamos los mejores destinos de pantalla a los que
                     viajar</h4>
             </v-col>
-            <v-col class="col-12 col-md-5 col-lg-6 d-flex justify-center">
+            <v-col class="col-12 col-md-5 col-lg-6 d-flex justify-center align-self-start">
                 <v-fade-transition>
                     <v-card v-ripple dark elevation="6" class="rounded-xl info-card" v-show="locSelected.name">
                         <a :href="`https://${locSelected.url}`" target="blank">
-                            <v-card-title class="d-flex justify-center font-weight-bold">
-                                {{ locSelected.name }}
+                            <v-card-title class="d-flex justify-center font-weight-bold text-subtitle-1">
+                                {{ locSelected.name | capitalize }}
                             </v-card-title>
                         </a>
                         <v-img :src="`/localidades/${locSelected.name}.jpg`" cover height="250" class="image-location" width="100%">
                         </v-img>
-                        <v-card-text class="white--text px-lg-12 font-weight-bold">
-                            {{ locSelected.description }}
-                        </v-card-text>
+                        <v-card-actions>
+                        <v-btn class="mx-auto font-weight-bold" outlined color="white" :href="`https://${locSelected.url}`">
+                            IR AL SITIO
+                        </v-btn>
+                    </v-card-actions>
                     </v-card>
-
                 </v-fade-transition>
             </v-col>
             <v-col class="col-12 col-md-6 col-lg-6 pr-lg-16">
@@ -56,6 +57,13 @@
     import * as d3 from 'd3';
 
     export default {
+        filters:{
+            capitalize(value){
+                    if(!value) return ''
+                    value = value.toLowerCase().toString()
+                    return value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+            }
+        },
         components: {
             InlineSvg,
             waveComponent: waveComponent,
