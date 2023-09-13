@@ -1,11 +1,14 @@
 <template>
     <g style="width:70px; height:70px; color:red; " :transform="`translate(${loc.x},${loc.y})`">
+        <!--
         <circle cx="50%" cy="50%" r="8" fill-opacity="0" stroke="#258dc8" stroke-width="1px" stroke-opacity="0.5">
             <animate attributeName="r" from="0" to="10" dur="4s" repeatCount="indefinite" />
             <animate attributeName="stroke-opacity" from="1" to="0" dur="3s" repeatCount="indefinite"></animate>
         </circle>
 
-        <circle cx="50%" cy="50%" r="7" fill="#4eaba6" stroke="#4eaba6"></circle>
+        -->
+
+        <circle cx="50%" cy="50%" r="4" fill="#4eaba6" stroke="#4eaba6"></circle>
 
         <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 10px;" fill="white">
             {{ loc.name.substr(0,10) |capitalize }}...

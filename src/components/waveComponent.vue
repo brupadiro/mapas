@@ -23,7 +23,7 @@
       </animate>
     </circle>
 
-    <circle cx="50%" cy="50%" r="7" fill="#f2a97f" stroke="orange"></circle>
+    <circle cx="50%" cy="50%" r="4" fill="#f2a97f" stroke="orange"></circle>
     <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 10px;" fill="white">
             {{ loc.name.substr(0,10) |capitalize  }}...
             <!--

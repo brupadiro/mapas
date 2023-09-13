@@ -89,7 +89,7 @@
                         </l-marker>
                     </v-marker-cluster>
 
-                    <v-card elevation="6" width="30%" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="isPc">
+                    <v-card elevation="6" width="25%" class="rounded-xl rounded-tl-0 rounded-bl-0" style="z-index:1000" v-if="isPc">
                             <v-card-text>
                                 <v-row>
                                     <v-col class="col-12 pa-1">
@@ -99,11 +99,7 @@
                                     </v-col>
 
                                     <v-col class="col-12 pa-1">
-                                        <v-autocomplete dense hide-details rounded v-model="search.Titulo_original" label="Título" :items="listOfTitles" outlined></v-autocomplete>
-                                    </v-col>
-                                    <v-col class="col-12 pa-1">
-                                        <selectComponent rounded v-model="search.Director" label="Director"
-                                            :items="listOFDirectors"></selectComponent>
+                                        <v-autocomplete dense hide-details rounded v-model="search.Titulo_original" label="Títulos" :items="listOfTitles" outlined></v-autocomplete>
                                     </v-col>
                                     <v-col class="col-12 pa-1">
                                         <selectComponent rounded v-model="search.Director" label="Director"
@@ -209,7 +205,7 @@
             locationFilter() {
                 return this.completeLocs.filter((item) => {
                     return Object.keys(this.search).every((key) => {
-                        if (this.search[key] == '') {
+                        if (this.search[key] == '' || this.search[key] == null) {
                             return true
                         }
                         if (key == 'Ano') {
@@ -226,7 +222,10 @@
                 return this.getUniqueValues('Productora')
             },
             listOfTitles() {
-                return this.getUniqueValues('Titulo_original')
+                return [{
+                    value: '',
+                    text: 'Todos los titulos'
+                }, ...this.getUniqueValues('Titulo_original')]
             },
             listOFDirectors() {
                 return [{

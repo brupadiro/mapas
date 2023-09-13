@@ -16,11 +16,11 @@
                                 {{ locSelected.name | capitalize }}
                             </v-card-title>
                         </a>
-                        <v-img :src="`/localidades/${locSelected.name}.jpg`" cover height="250" class="image-location" width="100%">
+                        <v-img :src="`/localidades/${locSelected.name}.webp`" cover height="250" class="image-location" width="100%">
                         </v-img>
                         <v-card-actions>
-                        <v-btn class="mx-auto font-weight-bold" outlined color="white" :href="`https://${locSelected.url}`">
-                            IR AL SITIO
+                        <v-btn class="mx-auto font-weight-bold" small outlined color="white" :href="`https://${locSelected.url}`">
+                            VISITA LA WEB
                         </v-btn>
                     </v-card-actions>
                     </v-card>
