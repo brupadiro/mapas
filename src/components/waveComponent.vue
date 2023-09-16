@@ -24,8 +24,9 @@
     </circle>
 
     <circle cx="50%" cy="50%" r="4" fill="#f2a97f" stroke="orange"></circle>
-    <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 10px;" fill="white">
-            {{ loc.name.substr(0,10) |capitalize  }}...
+    <text x="51%" y="50%"  
+ style="dominant-baseline: middle;font-weight: bold;font-size: 10.5px;background:black" fill="white">
+            {{ loc.name |capitalize  }}
             <!--
             <tspan v-for="(line, index) in formattedText" :key="index" x="51%" :dy="index > 0 ? '1em' : 0">
                 {{ line }}
@@ -77,3 +78,6 @@
 
 
 </script>
+<style>
+
+</style>

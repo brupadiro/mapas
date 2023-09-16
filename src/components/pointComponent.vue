@@ -1,5 +1,5 @@
 <template>
-    <g style="width:70px; height:70px; color:red; " :transform="`translate(${loc.x},${loc.y})`">
+    <g style="width:70px; height:70px; color:red; z-index:1000!important" :transform="`translate(${loc.x},${loc.y})`">
         <!--
         <circle cx="50%" cy="50%" r="8" fill-opacity="0" stroke="#258dc8" stroke-width="1px" stroke-opacity="0.5">
             <animate attributeName="r" from="0" to="10" dur="4s" repeatCount="indefinite" />
@@ -10,8 +10,8 @@
 
         <circle cx="50%" cy="50%" r="4" fill="#4eaba6" stroke="#4eaba6"></circle>
 
-        <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 10px;" fill="white">
-            {{ loc.name.substr(0,10) |capitalize }}...
+        <text x="51%" y="50%" style="dominant-baseline: middle;font-weight: bold;font-size: 10.5px;" fill="white">
+            {{ loc.name.substr(0,15) |capitalize }}...
             <!--
             <tspan v-for="(line, index) in formattedText" :key="index" x="51%" :dy="index > 0 ? '1em' : 0">
                 {{ line }}
