@@ -7,6 +7,9 @@ $main-font:  'Spectral', sans-serif;
 body {
 
     .v-application {
+      .v-application--wrap{
+        min-height: auto !important;
+      }
       background:#cbc8c9!important;
         font-family: $main-font!important;
       input{
@@ -44,9 +47,13 @@ body {
         font-size: 2.425rem !important;
       }
       .v-label, .v-select__selection {
-        font-family: "Spectral", sans-serif !important;
+        font-family: 'CANELA',Helvetica,Arial,Lucida,sans-serif!important;
         color: black;
         font-size: 15px;
+
+    }
+    .canela-font {
+      font-family: 'CANELA',Helvetica,Arial,Lucida,sans-serif!important;
 
     }
     }

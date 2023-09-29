@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <div>
         <v-row no-gutters>
             <v-col class="col-12 mb-12">
                 <h1 class="text-center text-lg-h3 font-weight-bold">Cada año, nuestros socios atraen y<br> facilitan
@@ -16,7 +16,7 @@
                                 {{ locSelected.name | capitalize }}
                             </v-card-title>
                         </a>
-                        <v-img :src="`/localidades/${locSelected.name}.webp`" cover height="250" class="image-location" width="100%">
+                        <v-img :src="`/wp-content/plugins/mapas/localidades/${locSelected.name}.webp`" cover height="250" class="image-location" width="100%">
                         </v-img>
                         <v-card-actions>
                         <v-btn class="mx-auto font-weight-bold" small outlined color="white" :href="`https://${locSelected.url}`">
@@ -29,7 +29,7 @@
             <v-col class="col-12 col-md-6 col-lg-6 pr-lg-16">
                 <svgMapComponent>
                     <template v-for="(loc,index) in baseLocs">
-                        <pointComponent @mouseover.native="locSelected = loc" v-if="locSelected.name !=loc.name" :loc="loc" :key="index"></pointComponent>
+                        <pointComponent @click.native="locSelected = loc" v-if="locSelected.name !=loc.name" :loc="loc" :key="index"></pointComponent>
                         <waveComponent v-else :loc="loc" :key="index"></waveComponent>
                     </template>  
                 </svgMapComponent>
@@ -37,7 +37,7 @@
             <v-col class="col-md-1"></v-col>
         </v-row>
 
-    </v-container>
+    </div>
 </template>
 <script>
     import waveComponent from '@/components/waveComponent.vue'

@@ -25,8 +25,8 @@
 
     <circle cx="50%" cy="50%" r="4" fill="#f2a97f" stroke="orange"></circle>
     <text x="51%" y="50%"  
- style="dominant-baseline: middle;font-weight: bold;font-size: 10.5px;background:black" fill="white">
-            {{ loc.name |capitalize  }}
+ style="dominant-baseline: middle;font-weight: bold;font-size: 14px;background:black" fill="white">
+            {{ formatLocName(loc.name) | capitalize  }}
             <!--
             <tspan v-for="(line, index) in formattedText" :key="index" x="51%" :dy="index > 0 ? '1em' : 0">
                 {{ line }}
@@ -45,9 +45,26 @@
             capitalize(value){
                     if(!value) return ''
                     value = value.toLowerCase().toString()
-                    return value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                    value= value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+                    value = value.replace("Fc","FC")
+                    value = value.replace("Fo","FO")
+                    return value
+
+                  }
+        },
+        methods:{
+          formatLocName(name) {
+                let newName = JSON.parse(JSON.stringify(name));
+                if (newName.includes("FILM COMMISSION")) {
+                    return newName.replace("FILM COMMISSION","FC")
+                } else if (newName.includes("FILM OFFICE")) {
+                    return newName.replace("FILM OFFICE","FO")
+                }
+                return newName.toUpperCase()
             }
         },
+
+
    props:{
             loc:{
                 type:Object,
